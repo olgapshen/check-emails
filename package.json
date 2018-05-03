@@ -1,0 +1,19 @@
+{
+  "name": "kns",
+  "version": "1.0.0",
+  "description": "",
+  "main": "checkemail.js",
+  "dependencies": {
+    "async": "^2.6.0",
+    "co": "^4.6.0",
+    "co-readable": "^1.0.1",
+    "email-existence": "^0.1.6",
+    "fs": "0.0.1-security"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
