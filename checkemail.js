@@ -33,14 +33,16 @@ co(function* () {
 	async.each(
 		items, 
 		function(email, callback) {
-			emailExistence.check(email, function (err, res) {
-				if (err) {
-					callback(err);
-				} else {
-					console.log(email + ': ' + res);
-					callback();
-				}
-			});
+			if (email) {
+				emailExistence.check(email, function (err, res) {
+					if (err) {
+						callback(err);
+					} else {
+						console.log(email + ', ' + res);
+						callback();
+					}
+				});
+			}
 		},
 		function(err) {
 			if (err) {
