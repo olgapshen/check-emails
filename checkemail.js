@@ -31,26 +31,26 @@ co(function* () {
 	
 	//console.log(items);
 	
+	console.log(items.length);
+	return;
+	
 	async.eachLimit(
 		items, 
 		10,
 		function(email, callback) {
 			if (email) {
 				emailExistence.check(email, function (err, res) {
-					if (err) {
-						console.error(err);
-						
-						if (email) {
-							fs.appendFileSync('output/error', email + '\r\n');
-						}
-					} else if (res){
-						try {
-							fs.appendFileSync('output/valid', email + '\r\n');
-						} catch (err) {
+					try {
+						if (err) {
 							console.error(err);
+							fs.appendFileSync('output/error', email + '\r\n');
+						} else if (res){
+							fs.appendFileSync('output/valid', email + '\r\n');
+						} else {
+							fs.appendFileSync('output/invalid', email + '\r\n');
 						}
-					} else {
-						fs.appendFileSync('output/invalid', email + '\r\n');
+					} catch (err) {
+						console.error(err);
 					}
 					
 					callback();
