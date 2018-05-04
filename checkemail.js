@@ -33,7 +33,7 @@ co(function* () {
 	
 	async.eachLimit(
 		items, 
-		5,
+		10,
 		function(email, callback) {
 			if (email) {
 				emailExistence.check(email, function (err, res) {
