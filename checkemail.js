@@ -39,6 +39,10 @@ co(function* () {
 				emailExistence.check(email, function (err, res) {
 					if (err) {
 						console.error(err);
+						
+						if (email) {
+							fs.appendFileSync('output/error', email + '\r\n');
+						}
 					} else if (res){
 						try {
 							fs.appendFileSync('output/valid', email + '\r\n');
