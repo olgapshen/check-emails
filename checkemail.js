@@ -2,6 +2,7 @@ const	emailExistence = require('email-existence'),
 		fs = require('fs'),
 		readable = require('co-readable'),
 		co = require('co'),
+		validator = require('validator'),
 		async = require('async');
 
 const read = readable(fs.createReadStream('addresses'));
@@ -30,28 +31,40 @@ co(function* () {
 	
 	//console.log(items);
 	
-	async.each(
+	async.eachLimit(
 		items, 
+		5,
 		function(email, callback) {
 			if (email) {
 				emailExistence.check(email, function (err, res) {
 					if (err) {
-						callback(err);
+						console.error(err);
+					} else if (res){
+						try {
+							fs.appendFileSync('output/valid', email + '\r\n');
+						} catch (err) {
+							console.error(err);
+						}
 					} else {
-						console.log(email + ', ' + res);
-						callback();
+						fs.appendFileSync('output/invalid', email + '\r\n');
 					}
+					
+					callback();
 				});
+			} else {				
+				callback();
 			}
 		},
 		function(err) {
 			if (err) {
 				console.error(err);
+				console.log("Failed");
 			} else {
 				console.log("Done");
 			}
 		}
 	);
 }).catch(function (err) {
-  console.error(err.stack);
+	console.error(err);
+	console.log("Failed");
 });

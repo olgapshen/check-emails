@@ -1,4 +1,4 @@
 /nbproject/
-node_modules
+/node_modules
 addresses
-output
+/output/
