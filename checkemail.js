@@ -2,7 +2,6 @@ const	emailExistence = require('email-existence'),
 		fs = require('fs'),
 		readable = require('co-readable'),
 		co = require('co'),
-		validator = require('validator'),
 		async = require('async');
 
 const read = readable(fs.createReadStream('addresses'));
