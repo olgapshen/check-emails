@@ -42,10 +42,6 @@ co(function* () {
 						
 						if (email) {
 							fs.appendFileSync('output/error', email + '\r\n');
-							/*fs.appendFileSync(
-								'output/error', 
-								err.toString() + '\r\n'
-							);*/
 						}
 					} else if (res){
 						try {
