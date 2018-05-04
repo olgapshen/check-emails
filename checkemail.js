@@ -29,9 +29,8 @@ co(function* () {
 	}
 	
 	//console.log(items);
-	
-	console.log(items.length);
-	return;
+	//console.log(items.length);
+	//return;
 	
 	async.eachLimit(
 		items, 
